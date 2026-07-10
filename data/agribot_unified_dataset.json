@@ -1,0 +1,493 @@
+{
+  "metadata": {
+    "project": "AI Agriculture Chatbot",
+    "version": "1.0",
+    "created": "2026-05-29",
+    "author": "Agriculture Internship Project",
+    "description": "Unified dataset for agriculture student chatbot",
+    "target_users": "Agriculture students (Class 11-12, B.Sc Agriculture)",
+    "sources": [
+      "NCERT Class 11",
+      "NCERT Class 12",
+      "ICAR eCourse",
+      "TNAU Agritech",
+      "India.gov.in"
+    ],
+    "stats": {
+      "total_records": 28,
+      "qa_pairs": 15,
+      "mcq_questions": 8,
+      "topics": 3,
+      "conversations": 2,
+      "categories": 8,
+      "category_list": [
+        "Agricultural Economics",
+        "Animal Husbandry",
+        "Crop Production",
+        "Fertilizers",
+        "Irrigation",
+        "Modern Farming",
+        "Plant Diseases",
+        "Soil Science"
+      ]
+    }
+  },
+  "qa": [
+    {
+      "id": 1,
+      "category": "Soil Science",
+      "subcategory": "Soil Types",
+      "difficulty": "beginner",
+      "question": "What is loamy soil?",
+      "answer": "Loamy soil is a mixture of sand, silt, and clay in roughly equal proportions. It is considered the best soil for farming because it retains moisture well, has good drainage, and is rich in nutrients. It is easy to till and supports most crops.",
+      "keywords": [
+        "loamy",
+        "soil",
+        "farming",
+        "texture",
+        "sand",
+        "silt",
+        "clay"
+      ],
+      "source": "NCERT Class 11"
+    },
+    {
+      "id": 2,
+      "category": "Soil Science",
+      "subcategory": "Soil Types",
+      "difficulty": "beginner",
+      "question": "What are the main types of soil found in India?",
+      "answer": "India has six major soil types: (1) Alluvial Soil - most fertile, found in river plains, good for wheat and rice. (2) Black Soil (Regur) - found in Deccan plateau, best for cotton. (3) Red Soil - found in peninsular India, good for millets. (4) Laterite Soil - found in high rainfall areas, used for tea and coffee. (5) Arid/Desert Soil - found in Rajasthan, needs irrigation. (6) Forest/Mountain Soil - found in hilly areas, good for fruits and spices.",
+      "keywords": [
+        "soil types",
+        "alluvial",
+        "black soil",
+        "red soil",
+        "laterite",
+        "India"
+      ],
+      "source": "NCERT Class 11"
+    },
+    {
+      "id": 3,
+      "category": "Soil Science",
+      "subcategory": "Soil pH",
+      "difficulty": "intermediate",
+      "question": "What is soil pH and why is it important for agriculture?",
+      "answer": "Soil pH is a measure of how acidic or alkaline the soil is, on a scale of 0 to 14. A pH of 7 is neutral. Values below 7 are acidic and above 7 are alkaline. Most crops grow best at a pH of 6 to 7.5. pH affects nutrient availability — in highly acidic soil, nutrients like phosphorus become unavailable to plants. Farmers can adjust pH by adding lime (to raise pH) or sulfur (to lower pH).",
+      "keywords": [
+        "pH",
+        "acidic",
+        "alkaline",
+        "neutral",
+        "nutrients",
+        "lime"
+      ],
+      "source": "ICAR eCourse"
+    },
+    {
+      "id": 4,
+      "category": "Crop Production",
+      "subcategory": "Kharif Crops",
+      "difficulty": "beginner",
+      "question": "What are Kharif crops? Give examples.",
+      "answer": "Kharif crops are sown at the beginning of the monsoon season (June-July) and harvested in autumn (September-October). They require warm weather, long days, and heavy rainfall. Examples of Kharif crops: Rice, Maize, Jowar, Bajra, Cotton, Sugarcane, Soybean, Groundnut, and Turmeric.",
+      "keywords": [
+        "kharif",
+        "monsoon",
+        "summer",
+        "rice",
+        "maize",
+        "cotton"
+      ],
+      "source": "NCERT Class 11"
+    },
+    {
+      "id": 5,
+      "category": "Crop Production",
+      "subcategory": "Rabi Crops",
+      "difficulty": "beginner",
+      "question": "What are Rabi crops? Give examples.",
+      "answer": "Rabi crops are sown in winter (October-November) and harvested in spring (March-April). They require cool weather and less rainfall, often depending on irrigation. Examples of Rabi crops: Wheat, Barley, Peas, Gram (Chickpea), Mustard, Oats, and Linseed.",
+      "keywords": [
+        "rabi",
+        "winter",
+        "wheat",
+        "barley",
+        "mustard",
+        "cool weather"
+      ],
+      "source": "NCERT Class 11"
+    },
+    {
+      "id": 6,
+      "category": "Crop Production",
+      "subcategory": "Crop Rotation",
+      "difficulty": "intermediate",
+      "question": "What is crop rotation and what are its benefits?",
+      "answer": "Crop rotation is the practice of growing different types of crops in the same field in sequential seasons. Benefits include: (1) Improves soil fertility — legumes fix nitrogen for the next crop. (2) Reduces soil erosion. (3) Controls pests and diseases naturally. (4) Reduces dependency on chemical fertilizers. (5) Increases overall crop yield. Example: Rice → Wheat → Legume (in North India).",
+      "keywords": [
+        "crop rotation",
+        "soil fertility",
+        "nitrogen",
+        "pest control",
+        "yield"
+      ],
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 7,
+      "category": "Irrigation",
+      "subcategory": "Drip Irrigation",
+      "difficulty": "intermediate",
+      "question": "How does drip irrigation work and what are its advantages?",
+      "answer": "Drip irrigation delivers water directly to the root zone of plants through a network of pipes, tubes, and emitters (drippers) at a slow, steady rate. Water flows from a main pipe to smaller lateral pipes with drippers placed near each plant. Advantages: (1) Saves up to 50-70% water. (2) Reduces weed growth. (3) Prevents soil erosion. (4) Increases crop yield. (5) Can be combined with fertilizer application (fertigation). It is ideal for vegetables, fruits, and areas with water scarcity.",
+      "keywords": [
+        "drip irrigation",
+        "water saving",
+        "fertigation",
+        "emitters",
+        "root zone"
+      ],
+      "source": "ICAR eCourse"
+    },
+    {
+      "id": 8,
+      "category": "Irrigation",
+      "subcategory": "Types of Irrigation",
+      "difficulty": "beginner",
+      "question": "What are the different types of irrigation methods?",
+      "answer": "Main types of irrigation: (1) Surface Irrigation - water flows over the soil surface (flooding, furrow). (2) Sprinkler Irrigation - water sprayed like rain using rotating nozzles, good for uneven land. (3) Drip Irrigation - water delivered drop by drop to roots, most water-efficient. (4) Sub-surface Irrigation - water delivered below soil surface through pipes. (5) Basin Irrigation - used for orchards and trees, water filled in basins around plants.",
+      "keywords": [
+        "irrigation",
+        "sprinkler",
+        "drip",
+        "surface",
+        "subsurface"
+      ],
+      "source": "TNAU Agritech"
+    },
+    {
+      "id": 9,
+      "category": "Fertilizers",
+      "subcategory": "Types of Fertilizers",
+      "difficulty": "beginner",
+      "question": "What is the difference between organic and inorganic fertilizers?",
+      "answer": "Organic Fertilizers come from natural sources like plant or animal materials. Examples: compost, cow dung manure, vermicompost, green manure, bone meal. They improve soil structure, add microorganisms, and release nutrients slowly. Inorganic (Chemical) Fertilizers are manufactured using industrial processes. Examples: Urea (N), DAP (N+P), MOP (K), NPK blends. They provide nutrients quickly but can degrade soil health over time if overused. A balanced approach using both is recommended.",
+      "keywords": [
+        "organic",
+        "inorganic",
+        "chemical",
+        "manure",
+        "compost",
+        "urea",
+        "DAP"
+      ],
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 10,
+      "category": "Fertilizers",
+      "subcategory": "NPK",
+      "difficulty": "intermediate",
+      "question": "What is NPK in fertilizers and what does each element do?",
+      "answer": "NPK stands for the three primary macronutrients in fertilizers: N = Nitrogen - promotes leaf and stem growth, makes plants green (chlorophyll production). P = Phosphorus - essential for root development, flowering, and seed formation. K = Potassium - improves overall plant health, disease resistance, and fruit quality. Fertilizer bags show NPK ratio like 10-26-26, meaning 10% Nitrogen, 26% Phosphorus, 26% Potassium.",
+      "keywords": [
+        "NPK",
+        "nitrogen",
+        "phosphorus",
+        "potassium",
+        "macronutrients"
+      ],
+      "source": "ICAR eCourse"
+    },
+    {
+      "id": 11,
+      "category": "Plant Diseases",
+      "subcategory": "Fungal Diseases",
+      "difficulty": "intermediate",
+      "question": "What is rice blast disease and how is it controlled?",
+      "answer": "Rice blast is one of the most destructive fungal diseases of rice caused by the fungus Magnaporthe oryzae. Symptoms: Grey or brown lesions with diamond shape on leaves, collar rot at leaf base, neck rot causing grain loss. Conditions favoring it: High humidity, temperature 25-28°C, excess nitrogen. Control methods: (1) Use resistant varieties. (2) Avoid excess nitrogen fertilizer. (3) Apply fungicides like Tricyclazole or Carbendazim. (4) Remove infected plant material. (5) Maintain proper spacing for air circulation.",
+      "keywords": [
+        "rice blast",
+        "fungal disease",
+        "Magnaporthe",
+        "tricyclazole",
+        "lesions"
+      ],
+      "source": "TNAU Agritech"
+    },
+    {
+      "id": 12,
+      "category": "Plant Diseases",
+      "subcategory": "Pest Control",
+      "difficulty": "intermediate",
+      "question": "What is Integrated Pest Management (IPM)?",
+      "answer": "Integrated Pest Management (IPM) is an eco-friendly approach to managing pests using a combination of methods to minimize economic, health, and environmental risks. Components of IPM: (1) Biological control - using natural enemies like predators and parasites. (2) Cultural control - crop rotation, proper spacing, field sanitation. (3) Mechanical control - traps, barriers, hand-picking pests. (4) Chemical control - using pesticides only when necessary and as a last resort. (5) Monitoring - regular field inspection to decide when action is needed.",
+      "keywords": [
+        "IPM",
+        "pest management",
+        "biological control",
+        "chemical control",
+        "eco-friendly"
+      ],
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 13,
+      "category": "Modern Farming",
+      "subcategory": "Organic Farming",
+      "difficulty": "beginner",
+      "question": "What is organic farming and what are its principles?",
+      "answer": "Organic farming is a method of crop and livestock production that avoids the use of synthetic fertilizers, pesticides, and genetically modified organisms (GMOs). Key principles: (1) Use of organic matter and compost for soil fertility. (2) Crop rotation and mixed cropping. (3) Biological pest control. (4) Conservation of soil and water. (5) Maintaining biodiversity. Benefits: Produces healthier food, reduces pollution, improves soil health, and is sustainable long-term. Examples: Vermicomposting, green manuring, biofertilizers.",
+      "keywords": [
+        "organic farming",
+        "compost",
+        "GMO",
+        "sustainable",
+        "biodiversity"
+      ],
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 14,
+      "category": "Animal Husbandry",
+      "subcategory": "Dairy Farming",
+      "difficulty": "beginner",
+      "question": "What is animal husbandry and why is it important?",
+      "answer": "Animal husbandry is the branch of agriculture that deals with the breeding, feeding, and caring of domestic animals for food, fiber, and labor. Importance: (1) Provides protein-rich food like milk, meat, and eggs. (2) Provides raw materials like wool, leather, and silk. (3) Draught animals help in farming operations. (4) Provides income and employment to rural families. (5) Animal waste (dung) is used as organic manure. Major animals: Cattle, Buffalo, Sheep, Goat, Poultry, Fish (Aquaculture).",
+      "keywords": [
+        "animal husbandry",
+        "dairy",
+        "poultry",
+        "livestock",
+        "breeding"
+      ],
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 15,
+      "category": "Agricultural Economics",
+      "subcategory": "Government Schemes",
+      "difficulty": "beginner",
+      "question": "What is PM-KISAN scheme and who benefits from it?",
+      "answer": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi) is a Central Government scheme launched in 2019 that provides direct income support to farmers. Key features: (1) Provides Rs. 6,000 per year to eligible farmer families. (2) Amount is transferred in three installments of Rs. 2,000 each directly to bank accounts. (3) Benefits small and marginal farmers who own less than 2 hectares of land. (4) Registration is done through local Patwari or Common Service Centers. This helps farmers meet their agricultural and household expenses.",
+      "keywords": [
+        "PM-KISAN",
+        "government scheme",
+        "income support",
+        "farmers",
+        "direct transfer"
+      ],
+      "source": "India.gov.in"
+    }
+  ],
+  "mcq": [
+    {
+      "id": 1,
+      "question": "Which soil is best suited for cotton cultivation?",
+      "options": {
+        "A": "Sandy soil",
+        "B": "Black soil",
+        "C": "Red soil",
+        "D": "Loamy soil"
+      },
+      "correct_answer": "B",
+      "explanation": "Black soil (Regur soil) retains moisture for a long time and is rich in calcium, potassium, and magnesium, making it ideal for cotton cultivation in the Deccan plateau region.",
+      "category": "Soil Science",
+      "difficulty": "medium",
+      "source": "AHSEC Agriculture"
+    },
+    {
+      "id": 2,
+      "question": "Which of the following is a Kharif crop?",
+      "options": {
+        "A": "Wheat",
+        "B": "Mustard",
+        "C": "Barley",
+        "D": "Rice"
+      },
+      "correct_answer": "D",
+      "explanation": "Rice is a Kharif crop sown during the monsoon season (June-July) and harvested in autumn. Wheat, Mustard, and Barley are Rabi crops grown in winter.",
+      "category": "Crop Production",
+      "difficulty": "easy",
+      "source": "NCERT Class 11"
+    },
+    {
+      "id": 3,
+      "question": "The process of growing two or more crops simultaneously in the same field is called?",
+      "options": {
+        "A": "Crop rotation",
+        "B": "Mixed cropping",
+        "C": "Relay cropping",
+        "D": "Monoculture"
+      },
+      "correct_answer": "B",
+      "explanation": "Mixed cropping is the practice of growing two or more crops simultaneously on the same field. It reduces the risk of crop failure and makes efficient use of land and resources.",
+      "category": "Crop Production",
+      "difficulty": "medium",
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 4,
+      "question": "Which nutrient in fertilizer is represented by the letter 'P' in NPK?",
+      "options": {
+        "A": "Potassium",
+        "B": "Protein",
+        "C": "Phosphorus",
+        "D": "Potash"
+      },
+      "correct_answer": "C",
+      "explanation": "In NPK fertilizers, N = Nitrogen, P = Phosphorus, K = Potassium (from its Latin name Kalium). Phosphorus is essential for root development, flowering, and seed formation.",
+      "category": "Fertilizers",
+      "difficulty": "easy",
+      "source": "ICAR eCourse"
+    },
+    {
+      "id": 5,
+      "question": "Which irrigation method is the most water-efficient?",
+      "options": {
+        "A": "Flood irrigation",
+        "B": "Furrow irrigation",
+        "C": "Sprinkler irrigation",
+        "D": "Drip irrigation"
+      },
+      "correct_answer": "D",
+      "explanation": "Drip irrigation is the most water-efficient method as it delivers water directly to the root zone of plants with minimal loss due to evaporation or runoff. It can save up to 50-70% water compared to flood irrigation.",
+      "category": "Irrigation",
+      "difficulty": "easy",
+      "source": "TNAU Agritech"
+    },
+    {
+      "id": 6,
+      "question": "Which fungus causes rice blast disease?",
+      "options": {
+        "A": "Pythium sp.",
+        "B": "Magnaporthe oryzae",
+        "C": "Fusarium sp.",
+        "D": "Alternaria sp."
+      },
+      "correct_answer": "B",
+      "explanation": "Rice blast disease is caused by the fungus Magnaporthe oryzae (previously called Pyricularia oryzae). It is one of the most destructive diseases of rice worldwide.",
+      "category": "Plant Diseases",
+      "difficulty": "hard",
+      "source": "TNAU Agritech"
+    },
+    {
+      "id": 7,
+      "question": "Vermicompost is produced by?",
+      "options": {
+        "A": "Bacteria",
+        "B": "Earthworms",
+        "C": "Fungi",
+        "D": "Algae"
+      },
+      "correct_answer": "B",
+      "explanation": "Vermicompost is produced by earthworms that decompose organic waste into nutrient-rich compost. It is an excellent organic fertilizer that improves soil structure and provides nutrients to plants.",
+      "category": "Fertilizers",
+      "difficulty": "easy",
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 8,
+      "question": "PM-KISAN scheme provides how much annual income support to eligible farmers?",
+      "options": {
+        "A": "Rs. 2,000",
+        "B": "Rs. 4,000",
+        "C": "Rs. 6,000",
+        "D": "Rs. 10,000"
+      },
+      "correct_answer": "C",
+      "explanation": "PM-KISAN provides Rs. 6,000 per year to eligible farmer families in three equal installments of Rs. 2,000 each, transferred directly to their bank accounts.",
+      "category": "Agricultural Economics",
+      "difficulty": "medium",
+      "source": "India.gov.in"
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "topic": "Photosynthesis in Plants",
+      "category": "Plant Biology",
+      "content": "Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to produce glucose and oxygen. It occurs in the chloroplasts of plant cells, which contain chlorophyll (the green pigment). The overall equation is: 6CO2 + 6H2O + light energy → C6H12O6 + 6O2. Photosynthesis has two stages: Light reactions (in thylakoid membranes) that capture light energy and produce ATP and NADPH. Dark reactions or Calvin cycle (in stroma) that use ATP and NADPH to convert CO2 into glucose. Factors affecting photosynthesis include light intensity, CO2 concentration, water availability, and temperature.",
+      "summary": "Process by which plants convert sunlight, water, and CO2 into glucose and oxygen using chlorophyll.",
+      "tags": [
+        "photosynthesis",
+        "chlorophyll",
+        "glucose",
+        "plant biology",
+        "Calvin cycle"
+      ],
+      "difficulty": "intermediate",
+      "source": "NCERT Class 11"
+    },
+    {
+      "id": 2,
+      "topic": "Green Revolution in India",
+      "category": "Agricultural History",
+      "content": "The Green Revolution refers to a series of agricultural reforms in India between 1960s and 1970s that dramatically increased food grain production. Key aspects: It was led by Dr. M.S. Swaminathan in India and Dr. Norman Borlaug internationally. High Yielding Varieties (HYV) of wheat and rice were introduced. Increased use of chemical fertilizers, pesticides, and irrigation. Major achievements: India became self-sufficient in food grain production. Wheat production tripled from 11 million tons (1960) to 33 million tons (1980). Punjab, Haryana, and Western UP became the food bowl of India. Limitations: Benefits were uneven, environmental degradation, over-reliance on chemicals, and decline in traditional crop varieties.",
+      "summary": "Agricultural transformation in 1960s-70s India through HYV seeds, fertilizers, and irrigation that achieved food self-sufficiency.",
+      "tags": [
+        "green revolution",
+        "HYV",
+        "Swaminathan",
+        "food production",
+        "India"
+      ],
+      "difficulty": "intermediate",
+      "source": "NCERT Class 12"
+    },
+    {
+      "id": 3,
+      "topic": "Nitrogen Cycle in Agriculture",
+      "category": "Soil Science",
+      "content": "The nitrogen cycle is the biogeochemical process by which nitrogen is converted between its various chemical forms as it circulates through the atmosphere, soil, and organisms. Steps in the nitrogen cycle: Nitrogen Fixation - N2 gas from atmosphere is converted to ammonia (NH3) by bacteria like Rhizobium (in legume roots) and Azotobacter (free-living). Nitrification - Ammonia is converted to nitrites then nitrates by bacteria like Nitrosomonas and Nitrobacter. Assimilation - Plants absorb nitrates and use them to build proteins. Ammonification - Dead organisms are decomposed back to ammonia by decomposers. Denitrification - Nitrates are converted back to N2 gas by bacteria like Pseudomonas. Agricultural significance: Legume crops like groundnut, soybean, and peas fix nitrogen naturally, reducing the need for nitrogen fertilizers.",
+      "summary": "Biogeochemical process converting nitrogen between atmosphere, soil, and organisms including fixation, nitrification, and denitrification.",
+      "tags": [
+        "nitrogen cycle",
+        "Rhizobium",
+        "fixation",
+        "nitrification",
+        "legumes"
+      ],
+      "difficulty": "advanced",
+      "source": "ICAR eCourse"
+    }
+  ],
+  "conversations": [
+    {
+      "conversation_id": 1,
+      "topic": "Soil Types",
+      "category": "Soil Science",
+      "dialogue": [
+        {
+          "turn": 1,
+          "user": "Hi, I want to learn about soil types for my agriculture exam",
+          "bot": "Great! Soil types are an important topic in agriculture. India has 6 major types of soil: Alluvial, Black, Red, Laterite, Arid, and Forest soil. Which one would you like to start with, or shall I give you a quick overview of all?"
+        },
+        {
+          "turn": 2,
+          "user": "Give me an overview of all",
+          "bot": "Sure! Here is a quick overview: (1) Alluvial Soil - Most fertile, found in river plains (Ganga, Brahmaputra). Best for wheat, rice, and sugarcane. (2) Black Soil (Regur) - Found in Deccan Plateau, best for cotton. Retains moisture well. (3) Red Soil - Found in peninsular India, good for millets and pulses. (4) Laterite Soil - Found in high rainfall areas like Kerala and Karnataka. Good for tea, coffee, and rubber. (5) Arid/Desert Soil - Found in Rajasthan, needs heavy irrigation. (6) Forest/Mountain Soil - Found in hilly areas, suitable for fruits and spices. Do you want me to explain any specific soil type in detail?"
+        },
+        {
+          "turn": 3,
+          "user": "Tell me more about black soil",
+          "bot": "Black soil, also called Regur soil or Cotton soil, is one of the most distinctive soils of India. Location: Found mainly in Deccan Plateau — Maharashtra, Madhya Pradesh, Gujarat, and parts of Andhra Pradesh. Formation: Formed from weathering of volcanic rocks (Deccan Trap). Properties: Dark black color due to high clay content, very fertile, retains moisture for long periods, swells when wet and cracks when dry (called self-ploughing soil), rich in calcium, magnesium, potassium, and iron but low in nitrogen and phosphorus. Best Crops: Cotton (that's why it's called Cotton Soil), Soybean, Groundnut, Sorghum (Jowar), and Citrus fruits. This is a common exam question — remember that black soil is best for cotton!"
+        }
+      ]
+    },
+    {
+      "conversation_id": 2,
+      "topic": "Fertilizers",
+      "category": "Crop Nutrition",
+      "dialogue": [
+        {
+          "turn": 1,
+          "user": "What is the difference between urea and DAP?",
+          "bot": "Great question! Both are common chemical fertilizers but serve different purposes. Urea: Contains only Nitrogen (46% N). It is the most widely used nitrogen fertilizer. Used to promote vegetative growth — leaves and stems. Applied as top dressing after crop establishment. Cheaper and easily available. DAP (Di-Ammonium Phosphate): Contains both Nitrogen (18% N) and Phosphorus (46% P2O5). Used mainly at the time of sowing as basal dose. Promotes root development and early plant establishment. More expensive than urea. Key rule: Use DAP at sowing (for roots), use Urea later (for growth). Would you like to know about other fertilizers too?"
+        }
+      ]
+    }
+  ]
+}
