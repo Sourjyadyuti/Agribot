@@ -15,14 +15,16 @@ from datetime import datetime
 # =========================
 # CONFIG
 # =========================
-# NOTE: Don't hardcode secrets. In Colab: click the key icon (Secrets) in the
-# left sidebar, add GEMINI_API_KEY, and load it like this:
-#   from google.colab import userdata
-#   API_KEY = userdata.get('GEMINI_API_KEY')
-API_KEY       = os.environ.get("GEMINI_API_KEY", "")
-DATASET_PATH  = "/content/drive/MyDrive/agribot_unified_dataset.json"
-MODEL_PATH    = "/content/drive/MyDrive/plant_disease_model.keras"
-CLASS_NAMES_PATH = "/content/drive/MyDrive/class_names.json"
+# API key comes from Streamlit secrets (Streamlit Cloud: Settings -> Secrets;
+# locally: .streamlit/secrets.toml, which should be in .gitignore and never
+# committed). Falls back to an env var for other hosts (e.g. HF Spaces).
+API_KEY = st.secrets.get("GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY", ""))
+
+# Paths are relative to the repo root so this works after a `git clone`.
+BASE_DIR          = os.path.dirname(os.path.abspath(__file__))
+DATASET_PATH      = os.path.join(BASE_DIR, "data", "agribot_unified_dataset.json")
+MODEL_PATH        = os.path.join(BASE_DIR, "models", "plant_disease_model.keras")
+CLASS_NAMES_PATH  = os.path.join(BASE_DIR, "models", "class_names.json")
 MODEL_NAME    = "gemini-2.5-flash"
 MAX_HISTORY   = 5
 IMG_SIZE      = (224, 224)
