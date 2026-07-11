@@ -25,7 +25,7 @@ BASE_DIR          = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH      = os.path.join(BASE_DIR, "data", "agribot_unified_dataset.json")
 MODEL_PATH        = os.path.join(BASE_DIR, "models", "plant_disease_model.keras")
 CLASS_NAMES_PATH  = os.path.join(BASE_DIR, "models", "class_names.json")
-MODEL_NAME    = "gemini-2.5-flash"
+MODEL_NAME    = "gemini-flash-latest"
 MAX_HISTORY   = 5
 IMG_SIZE      = (224, 224)
 
