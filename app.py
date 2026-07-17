@@ -234,12 +234,8 @@ except Exception as e:
 with st.sidebar:
     st.header("🌿 Navigation")
     mode = st.radio("Select mode", ["💬 Chat", "🔍 Disease Detection", "📝 Quiz", "ℹ️ About"])
-    st.markdown("---")
-    if chat_loaded:
-        st.markdown("### 📊 Dataset")
-        col1, col2 = st.columns(2)
-        col1.metric("Q&A", len(qa))
-        col2.metric("MCQ", len(mcq))
+    
+    
     st.markdown("---")
     if st.button("🗑️ Clear chat"):
         st.session_state.messages = []
