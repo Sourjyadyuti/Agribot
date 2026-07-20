@@ -31,7 +31,8 @@ MODEL_NAME    = "gemini-flash-latest"
 MAX_HISTORY   = 5
 IMG_SIZE      = (224, 224)
 
-st.set_page_config(page_title="AgriBot", page_icon="🌾", layout="wide")
+st.set_page_config(page_title="AgriBot", page_icon="🌾", layout="centered")
+
 # Small CSS tweaks so things breathe a bit more on narrow (phone) screens
 # without hurting the desktop layout.
 st.markdown("""
@@ -42,6 +43,7 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+
 st.title("🌾 AgriBot — Agriculture Chatbot")
 st.caption("For Students and Farmers of Assam")
 
@@ -210,7 +212,7 @@ Keep it concise and actionable for a farmer, understandable even with basic educ
     except Exception as e:
         return f"Error: {e}"
 
- 
+
 # =========================
 # WEATHER HELPERS
 # =========================
@@ -234,8 +236,8 @@ def get_current_weather(city):
         }
     except Exception:
         return None
- 
- 
+
+
 def get_forecast(city, days=5):
     """Fetch a simple multi-day forecast (one reading per day, midday) using OpenWeatherMap."""
     url = "https://api.openweathermap.org/data/2.5/forecast"
@@ -260,8 +262,8 @@ def get_forecast(city, days=5):
         return list(daily.values())[:days]
     except Exception:
         return []
- 
- 
+
+
 def ask_gemini_for_farming_advice(model, weather):
     prompt = f"""You are AgriBot, an agriculture assistant for farmers in Assam, India.
 Current weather conditions:
@@ -270,7 +272,7 @@ Current weather conditions:
 - Humidity: {weather['humidity']}%
 - Wind speed: {weather['wind_speed']} m/s
 - Rain (last hour): {weather['rain_1h']} mm
- 
+
 Based on these conditions, give a farmer 2-3 short, practical tips for today: e.g. whether to
 irrigate, any disease/pest risk from this humidity/temperature combination, and any precautions
 needed. Keep it concise, friendly, and actionable."""
@@ -279,7 +281,8 @@ needed. Keep it concise, friendly, and actionable."""
         return response.text.strip()
     except Exception as e:
         return f"Error: {e}"
- 
+
+
 # =========================
 # SESSION STATE
 # =========================
@@ -313,9 +316,13 @@ except Exception as e:
 # =========================
 with st.sidebar:
     st.header("🌿 Navigation")
-    mode = st.radio("Select mode", ["💬 Chat", "🔍 Disease Detection", "📝 Quiz", "ℹ️ About"])
-    
-    
+    mode = st.radio("Select mode", ["💬 Chat", "🔍 Disease Detection", "🌦️ Weather", "📝 Quiz", "ℹ️ About"])
+    st.markdown("---")
+    if chat_loaded:
+        st.markdown("### 📊 Dataset")
+        col1, col2 = st.columns(2)
+        col1.metric("Q&A", len(qa))
+        col2.metric("MCQ", len(mcq))
     st.markdown("---")
     if st.button("🗑️ Clear chat"):
         st.session_state.messages = []
@@ -406,24 +413,24 @@ elif "Disease Detection" in mode:
 elif "Weather" in mode:
     st.markdown("### 🌦️ Weather for Farming")
     st.caption("Check current conditions and get AgriBot's farming advice based on the weather.")
- 
+
     if not WEATHER_API_KEY:
         st.error("Weather API key isn't set. Add OPENWEATHER_API_KEY in Streamlit secrets.")
     else:
         city = st.text_input("Enter your location (city/town)", value="Silchar")
- 
+
         if st.button("Get Weather", type="primary") or "weather_data" in st.session_state:
             if st.session_state.get("weather_city") != city:
                 st.session_state.pop("weather_data", None)
- 
+
             if "weather_data" not in st.session_state:
                 with st.spinner(f"Fetching weather for {city}..."):
                     weather = get_current_weather(city)
                 st.session_state.weather_data = weather
                 st.session_state.weather_city = city
- 
+
             weather = st.session_state.get("weather_data")
- 
+
             if weather is None:
                 st.error(f"Couldn't find weather for '{city}'. Check the spelling and try again.")
             else:
@@ -433,13 +440,13 @@ elif "Weather" in mode:
                 c3.metric("💧 Humidity",    f"{weather['humidity']}%")
                 c4.metric("💨 Wind",        f"{weather['wind_speed']} m/s")
                 st.info(f"**Condition:** {weather['condition']}")
- 
+
                 if chat_loaded:
                     with st.spinner("Getting farming advice..."):
                         advice = ask_gemini_for_farming_advice(gemini_model, weather)
                     st.markdown("#### 🌾 AgriBot's advice for today")
                     st.markdown(advice)
- 
+
                 st.markdown("---")
                 st.markdown("#### 📅 5-Day Forecast")
                 with st.spinner("Loading forecast..."):
@@ -454,6 +461,7 @@ elif "Weather" in mode:
                             st.caption(f"🌧️ {day['rain_prob']:.0f}%")
                 else:
                     st.caption("Forecast unavailable right now.")
+
 # =========================
 # MODE: QUIZ
 # =========================
