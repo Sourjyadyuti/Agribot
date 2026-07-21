@@ -37,7 +37,7 @@ st.set_page_config(page_title="AgriBot", page_icon="🌾", layout="centered")
 # without hurting the desktop layout.
 st.markdown("""
 <style>
-[data-testid="stSidebar"] { background-color: #d1f2d1; }
+[data-testid="stSidebar"] { background-color: #22a55e; }
 @media (max-width: 640px) {
     .block-container { padding-left: 1rem; padding-right: 1rem; padding-top: 2rem; }
     h1 { font-size: 1.6rem !important; }
