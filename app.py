@@ -413,7 +413,7 @@ elif "Weather" in mode:
     if not WEATHER_API_KEY:
         st.error("Weather API key isn't set. Add OPENWEATHER_API_KEY in Streamlit secrets.")
     else:
-        city = st.text_input("Enter your location (city/town)", value="Silchar")
+        city = st.text_input("Enter your location (city/town)", value="Kokrajhar")
 
         if st.button("Get Weather", type="primary") or "weather_data" in st.session_state:
             if st.session_state.get("weather_city") != city:
