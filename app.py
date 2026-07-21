@@ -543,8 +543,4 @@ elif "About" in mode:
     - 🌾 Knowledge base: NCERT · ICAR · TNAU
     - 🤖 Powered by Google Gemini + a custom EfficientNet plant disease model
     """)
-    if chat_loaded:
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Q&A Pairs", len(qa))
-        c2.metric("MCQ",       len(mcq))
-        c3.metric("Topics",    len(topics))
+  
