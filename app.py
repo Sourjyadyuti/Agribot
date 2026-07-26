@@ -8,6 +8,7 @@ import numpy as np
 from PIL import Image
 import google.generativeai as genai
 import tensorflow as tf
+import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
@@ -19,17 +20,30 @@ from datetime import datetime
 # locally: .streamlit/secrets.toml, which should be in .gitignore and never
 # committed). Falls back to an env var for other hosts (e.g. HF Spaces).
 API_KEY = st.secrets.get("GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY", ""))
+WEATHER_API_KEY = st.secrets.get("OPENWEATHER_API_KEY", os.environ.get("OPENWEATHER_API_KEY", ""))
 
 # Paths are relative to the repo root so this works after a `git clone`.
 BASE_DIR          = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH      = os.path.join(BASE_DIR, "data", "agribot_unified_dataset.json")
 MODEL_PATH        = os.path.join(BASE_DIR, "models", "plant_disease_model.keras")
 CLASS_NAMES_PATH  = os.path.join(BASE_DIR, "models", "class_names.json")
-MODEL_NAME    = "gemini-2.5-flash"
+MODEL_NAME    = "gemini-flash-latest"
 MAX_HISTORY   = 5
 IMG_SIZE      = (224, 224)
 
-st.set_page_config(page_title="AgriBot", page_icon="🌾", layout="wide")
+st.set_page_config(page_title="AgriBot", page_icon="🌾", layout="centered")
+
+# Small CSS tweaks so things breathe a bit more on narrow (phone) screens
+# without hurting the desktop layout.
+st.markdown("""
+<style>
+[data-testid="stSidebar"] { background-color: #22a55e; }
+@media (max-width: 640px) {
+    .block-container { padding-left: 1rem; padding-right: 1rem; padding-top: 2rem; }
+    h1 { font-size: 1.6rem !important; }
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.title("🌾 AgriBot — Agriculture Chatbot")
 st.caption("For Students and Farmers of Assam")
@@ -201,6 +215,76 @@ Keep it concise and actionable for a farmer, understandable even with basic educ
 
 
 # =========================
+# WEATHER HELPERS
+# =========================
+def get_current_weather(city):
+    """Fetch current weather for a city using OpenWeatherMap. Returns a dict or None."""
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    params = {"q": city, "appid": WEATHER_API_KEY, "units": "metric"}
+    try:
+        resp = requests.get(url, params=params, timeout=10)
+        if resp.status_code != 200:
+            return None
+        data = resp.json()
+        return {
+            "city": data.get("name", city),
+            "temp": data["main"]["temp"],
+            "feels_like": data["main"]["feels_like"],
+            "humidity": data["main"]["humidity"],
+            "condition": data["weather"][0]["description"].title(),
+            "wind_speed": data["wind"]["speed"],
+            "rain_1h": data.get("rain", {}).get("1h", 0),
+        }
+    except Exception:
+        return None
+
+
+def get_forecast(city, days=5):
+    """Fetch a simple multi-day forecast (one reading per day, midday) using OpenWeatherMap."""
+    url = "https://api.openweathermap.org/data/2.5/forecast"
+    params = {"q": city, "appid": WEATHER_API_KEY, "units": "metric"}
+    try:
+        resp = requests.get(url, params=params, timeout=10)
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
+        daily = {}
+        for entry in data.get("list", []):
+            date = entry["dt_txt"].split(" ")[0]
+            hour = entry["dt_txt"].split(" ")[1]
+            if hour == "12:00:00" and date not in daily:
+                daily[date] = {
+                    "date": date,
+                    "temp": entry["main"]["temp"],
+                    "condition": entry["weather"][0]["description"].title(),
+                    "humidity": entry["main"]["humidity"],
+                    "rain_prob": entry.get("pop", 0) * 100,
+                }
+        return list(daily.values())[:days]
+    except Exception:
+        return []
+
+
+def ask_gemini_for_farming_advice(model, weather):
+    prompt = f"""You are AgriBot, an agriculture assistant for farmers in Assam, India.
+Current weather conditions:
+- Temperature: {weather['temp']}°C (feels like {weather['feels_like']}°C)
+- Condition: {weather['condition']}
+- Humidity: {weather['humidity']}%
+- Wind speed: {weather['wind_speed']} m/s
+- Rain (last hour): {weather['rain_1h']} mm
+
+Based on these conditions, give a farmer 2-3 short, practical tips for today: e.g. whether to
+irrigate, any disease/pest risk from this humidity/temperature combination, and any precautions
+needed. Keep it concise, friendly, and actionable."""
+    try:
+        response = model.generate_content(prompt)
+        return response.text.strip()
+    except Exception as e:
+        return f"Error: {e}"
+
+
+# =========================
 # SESSION STATE
 # =========================
 if "messages" not in st.session_state:
@@ -233,13 +317,8 @@ except Exception as e:
 # =========================
 with st.sidebar:
     st.header("🌿 Navigation")
-    mode = st.radio("Select mode", ["💬 Chat", "🔍 Disease Detection", "📝 Quiz", "ℹ️ About"])
-    st.markdown("---")
-    if chat_loaded:
-        st.markdown("### 📊 Dataset")
-        col1, col2 = st.columns(2)
-        col1.metric("Q&A", len(qa))
-        col2.metric("MCQ", len(mcq))
+    mode = st.radio("Select mode", ["💬 Chat", "🔍 Disease Detection", "🌦️ Weather", "📝 Quiz", "ℹ️ About"])
+    
     st.markdown("---")
     if st.button("🗑️ Clear chat"):
         st.session_state.messages = []
@@ -323,6 +402,61 @@ elif "Disease Detection" in mode:
             else:
                 st.info("Chat model isn't loaded, so detailed treatment advice isn't available. "
                          "The detected label above is still valid.")
+
+# =========================
+# MODE: WEATHER
+# =========================
+elif "Weather" in mode:
+    st.markdown("### 🌦️ Weather for Farming")
+    st.caption("Check current conditions and get AgriBot's farming advice based on the weather.")
+
+    if not WEATHER_API_KEY:
+        st.error("Weather API key isn't set. Add OPENWEATHER_API_KEY in Streamlit secrets.")
+    else:
+        city = st.text_input("Enter your location (city/town)", value="Kokrajhar")
+
+        if st.button("Get Weather", type="primary") or "weather_data" in st.session_state:
+            if st.session_state.get("weather_city") != city:
+                st.session_state.pop("weather_data", None)
+
+            if "weather_data" not in st.session_state:
+                with st.spinner(f"Fetching weather for {city}..."):
+                    weather = get_current_weather(city)
+                st.session_state.weather_data = weather
+                st.session_state.weather_city = city
+
+            weather = st.session_state.get("weather_data")
+
+            if weather is None:
+                st.error(f"Couldn't find weather for '{city}'. Check the spelling and try again.")
+            else:
+                c1, c2, c3, c4 = st.columns(4)
+                c1.metric("🌡️ Temperature", f"{weather['temp']}°C")
+                c2.metric("🤒 Feels Like",  f"{weather['feels_like']}°C")
+                c3.metric("💧 Humidity",    f"{weather['humidity']}%")
+                c4.metric("💨 Wind",        f"{weather['wind_speed']} m/s")
+                st.info(f"**Condition:** {weather['condition']}")
+
+                if chat_loaded:
+                    with st.spinner("Getting farming advice..."):
+                        advice = ask_gemini_for_farming_advice(gemini_model, weather)
+                    st.markdown("#### 🌾 AgriBot's advice for today")
+                    st.markdown(advice)
+
+                st.markdown("---")
+                st.markdown("#### 📅 5-Day Forecast")
+                with st.spinner("Loading forecast..."):
+                    forecast = get_forecast(city)
+                if forecast:
+                    cols = st.columns(len(forecast))
+                    for col, day in zip(cols, forecast):
+                        with col:
+                            st.markdown(f"**{day['date'][5:]}**")
+                            st.markdown(f"{day['temp']}°C")
+                            st.caption(day['condition'])
+                            st.caption(f"🌧️ {day['rain_prob']:.0f}%")
+                else:
+                    st.caption("Forecast unavailable right now.")
 
 # =========================
 # MODE: QUIZ
@@ -409,8 +543,4 @@ elif "About" in mode:
     - 🌾 Knowledge base: NCERT · ICAR · TNAU
     - 🤖 Powered by Google Gemini + a custom EfficientNet plant disease model
     """)
-    if chat_loaded:
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Q&A Pairs", len(qa))
-        c2.metric("MCQ",       len(mcq))
-        c3.metric("Topics",    len(topics))
+  
