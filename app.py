@@ -101,9 +101,9 @@ Q_WORDS = {"what", "why", "how", "when", "where", "which",
 
 
 def preprocess(raw):
-    text = raw.strip().lower()
+    text = raw.strip().lower() #convert lower case #strip() removes space sform the beginning and end
     for k, v in sorted(HINGLISH.items(), key=lambda x: -len(x[0])):
-        if " " in k and k in text:
+        if " " in k and k in text:  #
             text = text.replace(k, v)
     words = text.split()
     fixed = []
@@ -123,7 +123,7 @@ def preprocess(raw):
     return text
 
 
-def search(query, vectorizer, matrix, entries, top_k=3):
+def search(query, vectorizer, matrix, entries, top_k=3):#takes the user's  questino and returns results, the top 3 matching entries from dataset
     clean  = preprocess(query)
     vec    = vectorizer.transform([clean])
     scores = cosine_similarity(vec, matrix)[0]
@@ -136,7 +136,7 @@ def search(query, vectorizer, matrix, entries, top_k=3):
     return [r for r in results if r["score"] > 0.05][:top_k], clean
 
 
-def build_context(results):
+def build_context(results):#takes the results list and turns it into formatted text block(Q&A pairs or topic summaries).This formatted text is stored in the variable context.
     if not results:
         return "No specific context found."
     parts = []
@@ -149,7 +149,7 @@ def build_context(results):
     return "\n\n---\n\n".join(parts)
 
 
-def ask_gemini(model, question, context, history):
+def ask_gemini(model, question, context, history):#this context variable (the output of build_context() ) is passed in as the third argument,matching the function signature
     history_text = ""
     for turn in history[-MAX_HISTORY:]:
         history_text += f"Student: {turn['user']}\nAgriBot: {turn['bot']}\n\n"
